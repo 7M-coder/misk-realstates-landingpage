@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Phone } from "lucide-react";
 
 interface HeroProps {
   content: any;
@@ -7,110 +8,132 @@ interface HeroProps {
 }
 
 export default function Hero({ content, lang }: HeroProps) {
+  const isRtl = lang === "ar";
+  const Arrow = isRtl ? ArrowLeft : ArrowRight;
+
   return (
     <section
       id="home"
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      className="relative min-h-screen flex items-end pb-24 bg-[#0a0a0a] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover"
-          style={{ opacity: 0.18, objectPosition: "center 40%" }}
-        />
-        {/* Deep dark overlay to keep near-black feel */}
-        <div className="absolute inset-0 bg-[#0a0a0a]/60" />
-        {/* Gradient vignette bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
-        {/* Gradient vignette sides */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/70 via-transparent to-[#0a0a0a]/40" />
-      </div>
+      dir={isRtl ? "rtl" : "ltr"}
+      style={{ fontFamily: "'Tajawal',sans-serif" }}
+      className="relative h-screen min-h-[600px] flex flex-col justify-end overflow-hidden">
+      {/* Background image */}
+      <img
+        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=85"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: "center 35%" }}
+      />
 
-      {/* Decorative vertical lines */}
-      <div className="absolute top-0 left-[12%] h-full w-px bg-gradient-to-b from-transparent via-[#c9a84c]/20 to-transparent hidden lg:block" />
-      <div className="absolute top-0 right-[12%] h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent hidden lg:block" />
+      {/* Gradient: strong bottom, subtle top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="w-px h-12 bg-gradient-to-b from-[#c9a84c] to-transparent"
-        />
-        <span className="text-[#c9a84c]/60 text-[10px] tracking-[0.3em] uppercase rotate-90 origin-center mt-2">
-          scroll
+      {/* Top-right: small badge */}
+      <motion.div
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="absolute top-24 right-8 md:right-14 flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2"
+        style={{ direction: "ltr" }}>
+        <div className="w-2 h-2 rounded-full bg-[#c9a449] animate-pulse" />
+        <span className="text-white text-xs font-medium tracking-wide">
+          {isRtl ? "معتمد هيئة العقار" : "Real Estate Authority Licensed"}
         </span>
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-8 z-20 relative w-full">
-        {/* Small label */}
+      {/* Main content */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 pb-0">
+        {/* Label */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center gap-4 mb-8">
-          <div className="w-12 h-px bg-[#c9a84c]" />
-          <span className="text-[#c9a84c] text-xs tracking-[0.4em] uppercase font-light">
-            Premium Real Estate
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-3 mb-4">
+          <span className="w-6 h-0.5 bg-[#c9a449]" />
+          <span className="text-[#c9a449] text-xs font-medium tracking-widest uppercase">
+            {isRtl
+              ? "مجموعة مسك للخدمات العقارية"
+              : "Misk Real Estate Services Group"}
           </span>
         </motion.div>
 
-        {/* Main Title */}
+        {/* Big headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          className="text-6xl md:text-[7.5rem] font-light text-[#f8f5ef] leading-[0.9] mb-8 max-w-4xl">
+          transition={{ delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="text-white font-black mb-4 leading-tight"
+          style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)", lineHeight: 1.1 }}>
           {content.hero.title}
         </motion.h1>
 
-        {/* Subtitle + CTA row */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-16">
-          <p className="text-[#f8f5ef]/50 text-base md:text-lg max-w-md leading-relaxed font-light tracking-wide">
-            {content.hero.subtitle}
-          </p>
+          transition={{ delay: 0.5 }}
+          className="text-white/65 font-light mb-8 max-w-xl"
+          style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)", lineHeight: 1.7 }}>
+          {content.hero.subtitle}
+        </motion.p>
 
+        {/* CTA row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex flex-wrap gap-3 mb-0">
           <a
             href="#services"
-            className="group flex items-center gap-4 px-8 py-4 bg-[#c9a84c] text-[#0a0a0a] text-sm tracking-[0.2em] uppercase font-semibold hover:bg-[#f8f5ef] transition-all duration-500 shrink-0">
+            className="flex items-center gap-2 px-7 py-3.5 bg-[#1d6b52] text-white font-bold text-sm hover:bg-[#144d3c] transition-colors duration-300 shadow-lg">
             {content.hero.cta}
-            <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-300" />
+            <Arrow size={15} />
+          </a>
+          <a
+            href="tel:0559090874"
+            className="flex items-center gap-2 px-7 py-3.5 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-medium text-sm hover:bg-white/20 transition-all duration-300">
+            <Phone size={15} />
+            <span dir="ltr">0559090874</span>
           </a>
         </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="flex gap-12 mt-16 pt-8 border-t border-white/10">
-          {[
-            { num: "500+", label: "Properties" },
-            { num: "15yr", label: "Experience" },
-            { num: "98%", label: "Client Satisfaction" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                className="text-3xl text-[#c9a84c] font-light">
-                {s.num}
-              </div>
-              <div className="text-[#f8f5ef]/40 text-xs tracking-[0.2em] uppercase mt-1">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
+
+      {/* Bottom floating stats bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.75 }}
+        dir={isRtl ? "rtl" : "ltr"}
+        style={{ fontFamily: "'Tajawal',sans-serif" }}
+        className="relative z-10 mt-10 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-x-reverse divide-gray-100">
+            {[
+              { num: "٦", label: isRtl ? "أقسام متخصصة" : "Departments" },
+              { num: "٥٠٠+", label: isRtl ? "عقار مُنجز" : "Properties" },
+              {
+                num: "١٠٠%",
+                label: isRtl ? "التزام نظامي" : "Full Compliance",
+              },
+              {
+                num: "٢٤/٧",
+                label: isRtl ? "متابعة مستمرة" : "Ongoing Support",
+              },
+            ].map((s, i) => (
+              <div key={i} className="py-5 px-6 text-center md:text-start">
+                <div
+                  className="font-black text-[#1d6b52]"
+                  style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}>
+                  {s.num}
+                </div>
+                <div className="text-[#6b7280] text-xs font-medium mt-0.5">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

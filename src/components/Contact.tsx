@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Instagram, Twitter } from "lucide-react";
 
 interface ContactProps {
   content: any;
@@ -8,166 +8,200 @@ interface ContactProps {
 }
 
 export default function Contact({ content, lang }: ContactProps) {
+  const isRtl = lang === "ar";
+
   return (
     <section
       id="contact"
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      className="bg-[#0a0a0a] py-28">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
-          {/* Left / Info */}
+      dir={isRtl ? "rtl" : "ltr"}
+      style={{ fontFamily: "'Tajawal',sans-serif" }}
+      className="bg-[#f8f6f2]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
+        {/* Section header */}
+        <div className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-8 h-0.5 bg-[#c9a449]" />
+            <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
+              {isRtl ? "تواصل معنا" : "Get In Touch"}
+            </span>
+          </div>
+          <h2
+            className="font-black text-[#111] leading-tight"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+            {content.contact.title}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Left: teal info panel */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-px bg-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-xs tracking-[0.4em] uppercase">
-                Get In Touch
-              </span>
+            className="lg:col-span-2 bg-[#1d6b52] p-8 md:p-10 flex flex-col justify-between">
+            <div>
+              <h3 className="text-white font-bold text-xl mb-2">
+                {isRtl ? "معلومات التواصل" : "Contact Information"}
+              </h3>
+              <p className="text-white/55 text-sm leading-loose mb-10 font-light">
+                {isRtl
+                  ? "نحن هنا للإجابة على جميع استفساراتك. تواصل معنا اليوم للحصول على استشارة مجانية."
+                  : "We're here to answer your inquiries. Contact us today for a free consultation."}
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: Phone,
+                    label: isRtl ? "الهاتف" : "Phone",
+                    val: content.contact.phone,
+                    dir: "ltr",
+                  },
+                  {
+                    icon: Mail,
+                    label: isRtl ? "البريد" : "Email",
+                    val: content.contact.email,
+                  },
+                  {
+                    icon: MapPin,
+                    label: isRtl ? "العنوان" : "Address",
+                    val: content.contact.address,
+                  },
+                ].map(({ icon: Icon, label, val, dir: d }) => (
+                  <div key={label} className="flex items-start gap-4">
+                    <div className="w-9 h-9 bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon size={15} className="text-[#c9a449]" />
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-xs uppercase tracking-wide mb-0.5">
+                        {label}
+                      </p>
+                      <p
+                        className="text-white text-sm font-medium"
+                        dir={d as any}>
+                        {val}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h2
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              className="text-5xl md:text-6xl font-light text-[#f8f5ef] mb-8 leading-tight">
-              {content.contact.title}
-            </h2>
 
-            <div className="w-12 h-px bg-[#c9a84c] mb-10" />
-
-            <p className="text-[#f8f5ef]/40 leading-relaxed mb-14 text-sm">
-              {lang === "ar"
-                ? "نحن هنا للإجابة على جميع استفساراتك. تواصل معنا اليوم لتحصل على استشارة مجانية."
-                : "We are here to answer all your inquiries. Contact us today for a complimentary consultation."}
-            </p>
-
-            <div className="space-y-8">
-              {[
-                {
-                  icon: Phone,
-                  label: lang === "ar" ? "الهاتف" : "Phone",
-                  value: content.contact.phone,
-                  dir: "ltr",
-                },
-                {
-                  icon: Mail,
-                  label: lang === "ar" ? "البريد الإلكتروني" : "Email",
-                  value: content.contact.email,
-                },
-                {
-                  icon: MapPin,
-                  label: lang === "ar" ? "العنوان" : "Address",
-                  value: content.contact.address,
-                },
-              ].map(({ icon: Icon, label, value, dir }) => (
-                <div key={label} className="flex items-start gap-5 group">
-                  <div className="w-10 h-10 border border-[#c9a84c]/30 flex items-center justify-center text-[#c9a84c] shrink-0 group-hover:bg-[#c9a84c] group-hover:text-[#0a0a0a] transition-all duration-400 mt-0.5">
-                    <Icon size={16} />
-                  </div>
-                  <div>
-                    <p className="text-[#f8f5ef]/30 text-xs tracking-[0.15em] uppercase mb-1">
-                      {label}
-                    </p>
-                    <p className="text-[#f8f5ef] text-sm" dir={dir as any}>
-                      {value}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            {/* Social + handle */}
+            <div className="mt-10 pt-8 border-t border-white/15">
+              <p className="text-white/40 text-xs uppercase tracking-wider mb-3">
+                {isRtl ? "تابعنا على" : "Follow Us"}
+              </p>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://instagram.com/miskestate"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 bg-white/10 hover:bg-[#c9a449] flex items-center justify-center transition-colors duration-300">
+                  <Instagram size={15} className="text-white" />
+                </a>
+                <a
+                  href="https://twitter.com/miskestate"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-9 h-9 bg-white/10 hover:bg-[#c9a449] flex items-center justify-center transition-colors duration-300">
+                  <Twitter size={15} className="text-white" />
+                </a>
+                <span className="text-white/50 text-sm mr-1">@miskestate</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right / Form */}
+          {/* Right: form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-3 border border-white/8 p-10">
-            <form className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="group">
-                  <label className="block text-[#f8f5ef]/40 text-xs tracking-[0.2em] uppercase mb-3">
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-3 bg-white p-8 md:p-10 shadow-sm">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-bold text-[#333] uppercase tracking-wide mb-2">
                     {content.contact.name}
                   </label>
                   <input
                     type="text"
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-[#c9a84c] outline-none text-[#f8f5ef] transition-colors duration-300 placeholder-white/20 text-sm"
-                    placeholder={lang === "ar" ? "اسمك الكريم" : "Your name"}
+                    placeholder={isRtl ? "اسمك الكريم" : "Your full name"}
+                    className="w-full px-4 py-3 bg-[#f8f6f2] border border-gray-200 focus:border-[#1d6b52] focus:outline-none text-sm text-[#111] placeholder-gray-400 transition-colors"
                   />
                 </div>
-                <div className="group">
-                  <label className="block text-[#f8f5ef]/40 text-xs tracking-[0.2em] uppercase mb-3">
+                <div>
+                  <label className="block text-xs font-bold text-[#333] uppercase tracking-wide mb-2">
                     {content.contact.email}
                   </label>
                   <input
                     type="email"
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-[#c9a84c] outline-none text-[#f8f5ef] transition-colors duration-300 placeholder-white/20 text-sm"
                     placeholder={
-                      lang === "ar" ? "بريدك الإلكتروني" : "Your email"
+                      isRtl ? "بريدك الإلكتروني" : "Your email address"
                     }
+                    className="w-full px-4 py-3 bg-[#f8f6f2] border border-gray-200 focus:border-[#1d6b52] focus:outline-none text-sm text-[#111] placeholder-gray-400 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[#f8f5ef]/40 text-xs tracking-[0.2em] uppercase mb-3">
-                  Subject
+                <label className="block text-xs font-bold text-[#333] uppercase tracking-wide mb-2">
+                  {isRtl ? "رقم الجوال" : "Phone Number"}
                 </label>
                 <input
-                  type="text"
-                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-[#c9a84c] outline-none text-[#f8f5ef] transition-colors duration-300 placeholder-white/20 text-sm"
-                  placeholder={
-                    lang === "ar" ? "موضوع الرسالة" : "Property inquiry"
-                  }
+                  type="tel"
+                  dir="ltr"
+                  placeholder="05XXXXXXXX"
+                  className="w-full px-4 py-3 bg-[#f8f6f2] border border-gray-200 focus:border-[#1d6b52] focus:outline-none text-sm text-[#111] placeholder-gray-400 transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-[#f8f5ef]/40 text-xs tracking-[0.2em] uppercase mb-3">
+                <label className="block text-xs font-bold text-[#333] uppercase tracking-wide mb-2">
                   {content.contact.message}
                 </label>
                 <textarea
-                  rows={5}
-                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 focus:border-[#c9a84c] outline-none text-[#f8f5ef] transition-colors duration-300 placeholder-white/20 text-sm resize-none"
+                  rows={4}
                   placeholder={
-                    lang === "ar"
-                      ? "أخبرنا عن متطلباتك"
-                      : "Tell us about your requirements..."
+                    isRtl
+                      ? "تفاصيل طلبك أو استفسارك..."
+                      : "Tell us about your inquiry..."
                   }
+                  className="w-full px-4 py-3 bg-[#f8f6f2] border border-gray-200 focus:border-[#1d6b52] focus:outline-none text-sm text-[#111] placeholder-gray-400 transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="group flex items-center gap-4 px-10 py-4 bg-[#c9a84c] text-[#0a0a0a] text-sm tracking-[0.2em] uppercase font-semibold hover:bg-[#f8f5ef] transition-all duration-400">
-                {content.contact.send}
-                <ArrowRight
-                  size={16}
-                  className="group-hover:translate-x-1 transition-transform"
+                className="group w-full flex items-center justify-center gap-3 py-4 bg-[#1d6b52] text-white font-bold text-sm hover:bg-[#144d3c] transition-colors duration-300 shadow-lg shadow-[#1d6b52]/20">
+                <Send
+                  size={15}
+                  className="group-hover:translate-x-[-2px] transition-transform"
                 />
+                {content.contact.send}
               </button>
             </form>
           </motion.div>
         </div>
+      </div>
 
-        {/* Footer strip */}
-        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            className="text-[#f8f5ef]/20 text-sm tracking-wider">
-            Misk Estate Group © {new Date().getFullYear()}
+      {/* Footer bar */}
+      <div className="bg-[#111] py-5">
+        <div
+          className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-3 text-center"
+          dir={isRtl ? "rtl" : "ltr"}>
+          <span className="text-white/30 text-xs">
+            © {new Date().getFullYear()} مجموعة مسك للخدمات العقارية
           </span>
-          <div className="flex gap-1">
-            {["#c9a84c", "#c9a84c80", "#c9a84c30"].map((c, i) => (
-              <div
-                key={i}
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: c }}
-              />
-            ))}
+          <div className="flex items-center gap-1">
+            <span className="w-2 h-2 bg-[#1d6b52]" />
+            <span className="w-2 h-2 bg-[#c9a449]" />
+            <span className="w-2 h-2 bg-[#1d6b52]" />
           </div>
+          <span className="text-white/30 text-xs" dir="ltr">
+            Misk Real Estate Services Group
+          </span>
         </div>
       </div>
     </section>

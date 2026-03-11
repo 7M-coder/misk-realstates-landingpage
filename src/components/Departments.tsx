@@ -7,44 +7,45 @@ import {
   Handshake,
   Building,
   FileText,
-  ChevronDown,
+  Plus,
+  Minus,
 } from "lucide-react";
 
 interface DepartmentsProps {
   lang: "ar" | "en";
 }
 
-const departments = {
+const data = {
   en: [
     {
       id: "01",
       icon: Monitor,
       title: "Digital Marketing",
-      subtitle: "Digital Marketing Department",
+      sub: "Digital Marketing Dept.",
       summary:
         "Building a powerful digital presence for properties and targeting potential clients with high precision.",
       services: [
-        "Creating and managing digital advertising campaigns",
+        "Creating & managing digital ad campaigns",
         "Marketing via social media platforms",
-        "Professional property photography (photos – video – virtual tours)",
+        "Professional photography (photos, video, virtual tours)",
         "Writing real estate marketing content",
         "Managing listings on real estate platforms",
-        "Analyzing data and improving campaign performance",
+        "Data analysis & campaign performance improvement",
       ],
     },
     {
       id: "02",
       icon: Map,
       title: "Ground Marketing",
-      subtitle: "Ground Marketing Department",
+      sub: "Ground Marketing Dept.",
       summary:
         "Reinforcing real-world market presence and covering the field marketing side of real estate.",
       services: [
-        "Direct marketing for properties and projects",
-        "Installing and managing advertising boards",
-        "Coordinating with owners and investors",
+        "Direct marketing for properties & projects",
+        "Installing & managing advertising boards",
+        "Coordinating with owners & investors",
         "Distributing marketing materials",
-        "Studying market movement and competitors",
+        "Studying market movement & competitors",
         "Supporting field sales teams",
       ],
     },
@@ -52,15 +53,15 @@ const departments = {
       id: "03",
       icon: ShoppingCart,
       title: "Sales & Acquisition",
-      subtitle: "Sales & Acquisition Department",
+      sub: "Sales & Acquisition Dept.",
       summary:
         "Specialized in managing and executing buy/sell transactions with high efficiency.",
       services: [
-        "Selling residential and commercial properties",
+        "Selling residential & commercial properties",
         "Searching for investment opportunities",
         "Preparing real estate offers",
         "Negotiating between parties",
-        "Following up on ownership and handover procedures",
+        "Following up on ownership & handover procedures",
         "Providing real estate investment consultations",
       ],
     },
@@ -68,13 +69,13 @@ const departments = {
       id: "04",
       icon: Handshake,
       title: "Real Estate Brokerage",
-      subtitle: "Brokerage Department",
+      sub: "Brokerage Dept.",
       summary:
-        "The professional link between property owners and clients in accordance with approved regulations.",
+        "The professional link between property owners and clients per approved regulations.",
       services: [
-        "Brokerage in buying and renting",
+        "Brokerage in buying & renting",
         "Matching offers with requests",
-        "Negotiating and managing deals",
+        "Negotiating & managing deals",
         "Documenting real estate operations",
         "Providing real estate consultations",
         "Ensuring compliance with regulatory procedures",
@@ -84,32 +85,32 @@ const departments = {
       id: "05",
       icon: Building,
       title: "Property Management",
-      subtitle: "Property Management Department",
+      sub: "Property Management Dept.",
       summary:
-        "Providing integrated property management that ensures stability and sustainable returns.",
+        "Integrated property management ensuring stability and sustainable returns.",
       services: [
-        "Managing residential and commercial properties",
-        "Collecting rents and managing payments",
-        "Supervising maintenance and operations",
+        "Managing residential & commercial properties",
+        "Collecting rents & managing payments",
+        "Supervising maintenance & operations",
         "Following up on tenant complaints",
         "Preparing periodic reports for owners",
-        "Improving operational efficiency and increasing returns",
+        "Improving operational efficiency & returns",
       ],
     },
     {
       id: "06",
       icon: FileText,
       title: "Ejar Contracts",
-      subtitle: "Ejar Contracts Department",
+      sub: "Ejar Contracts Dept.",
       summary:
         "Specialized in organizing and documenting contracts through the Ejar platform.",
       services: [
-        "Drafting and formulating rental contracts",
-        "Documenting contracts via the Ejar platform",
-        "Renewing and following up on contracts",
+        "Drafting & formulating rental contracts",
+        "Documenting contracts via Ejar platform",
+        "Renewing & following up on contracts",
         "Editing contract data",
         "Providing regulatory consultations",
-        "Ensuring all parties comply with contract terms",
+        "Ensuring parties comply with contract terms",
       ],
     },
   ],
@@ -118,7 +119,7 @@ const departments = {
       id: "01",
       icon: Monitor,
       title: "التسويق الرقمي",
-      subtitle: "Digital Marketing Department",
+      sub: "قسم التسويق الرقمي",
       summary:
         "بناء حضور رقمي قوي للعقارات واستهداف العملاء المحتملين بدقة عالية.",
       services: [
@@ -134,7 +135,7 @@ const departments = {
       id: "02",
       icon: Map,
       title: "التسويق الميداني",
-      subtitle: "Ground Marketing Department",
+      sub: "قسم التسويق الميداني",
       summary:
         "يعزز التواجد الواقعي في السوق ويغطي الجانب الميداني للتسويق العقاري.",
       services: [
@@ -150,7 +151,7 @@ const departments = {
       id: "03",
       icon: ShoppingCart,
       title: "البيع والشراء",
-      subtitle: "Sales & Acquisition Department",
+      sub: "قسم البيع والشراء",
       summary: "مختص بإدارة وتنفيذ صفقات البيع والشراء بكفاءة عالية.",
       services: [
         "بيع العقارات السكنية والتجارية",
@@ -165,7 +166,7 @@ const departments = {
       id: "04",
       icon: Handshake,
       title: "الوساطة العقارية",
-      subtitle: "Brokerage Department",
+      sub: "قسم الوساطة العقارية",
       summary:
         "حلقة الوصل الاحترافية بين الملاك والعملاء وفق الأنظمة المعتمدة.",
       services: [
@@ -181,7 +182,7 @@ const departments = {
       id: "05",
       icon: Building,
       title: "إدارة الأملاك",
-      subtitle: "Property Management Department",
+      sub: "قسم إدارة الأملاك",
       summary: "يقدم إدارة متكاملة للعقارات تضمن الاستقرار والعائد المستدام.",
       services: [
         "إدارة العقارات السكنية والتجارية",
@@ -196,7 +197,7 @@ const departments = {
       id: "06",
       icon: FileText,
       title: "عقود الإيجار",
-      subtitle: "Ejar Contracts Department",
+      sub: "قسم عقود الإيجار",
       summary: "مختص بتنظيم وتوثيق العقود عبر منصة إيجار.",
       services: [
         "إعداد وصياغة عقود الإيجار",
@@ -211,127 +212,169 @@ const departments = {
 };
 
 export default function Departments({ lang }: DepartmentsProps) {
-  const [active, setActive] = useState<number | null>(null);
-  const items = departments[lang];
+  const [active, setActive] = useState<number | null>(0);
+  const items = data[lang];
+  const isRtl = lang === "ar";
 
   return (
     <section
       id="departments"
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      className="bg-[#f8f5ef] py-28">
-      <div className="max-w-7xl mx-auto px-8">
+      dir={isRtl ? "rtl" : "ltr"}
+      style={{ fontFamily: "'Tajawal',sans-serif" }}
+      className="bg-[#f8f6f2] py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20 gap-6">
-          <div>
-            <div className="flex items-center gap-4 mb-5">
-              <div className="w-8 h-px bg-[#c9a84c]" />
-              <span className="text-[#c9a84c] text-xs tracking-[0.4em] uppercase">
-                {lang === "ar" ? "أقسامنا" : "Our Divisions"}
-              </span>
-            </div>
-            <h2
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              className="text-5xl md:text-6xl font-light text-[#0a0a0a] leading-tight">
-              {lang === "ar"
-                ? "أقسام الشركة وخدماتها"
-                : "Departments & Services"}
-            </h2>
+        <div className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-8 h-0.5 bg-[#c9a449]" />
+            <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
+              {isRtl ? "أقسامنا" : "Our Divisions"}
+            </span>
           </div>
-          <p className="text-[#6b6b6b] text-sm max-w-xs leading-relaxed md:mb-2">
-            {lang === "ar"
-              ? "ستة أقسام متخصصة تغطي كل جوانب الخدمة العقارية"
-              : "Six specialized divisions covering every aspect of real estate service"}
-          </p>
+          <h2
+            className="font-black text-[#111] leading-tight"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+            {isRtl ? "أقسام الشركة وخدماتها" : "Departments & Services"}
+          </h2>
         </div>
 
-        {/* Departments accordion-grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#0a0a0a]/8">
-          {items.map((dept, index) => {
-            const Icon = dept.icon;
-            const isActive = active === index;
-
-            return (
-              <motion.div
-                key={index}
-                layout
-                className="bg-[#f8f5ef] overflow-hidden">
-                {/* Header row — always visible */}
-                <button
-                  onClick={() => setActive(isActive ? null : index)}
-                  className="w-full text-start group">
-                  <div
-                    className={`flex items-center gap-6 p-8 transition-all duration-500 ${isActive ? "bg-[#0a0a0a]" : "hover:bg-white"}`}>
-                    {/* Number */}
+        {/* Two-column layout: accordion list + detail panel */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Left: accordion list */}
+          <div className="lg:col-span-2 space-y-2">
+            {items.map((dept, i) => {
+              const Icon = dept.icon;
+              const isOpen = active === i;
+              return (
+                <div
+                  key={i}
+                  className="bg-white overflow-hidden border border-gray-100">
+                  <button
+                    onClick={() => setActive(isOpen ? null : i)}
+                    className={`w-full flex items-center gap-4 px-5 py-4 transition-colors duration-300 text-start ${
+                      isOpen ? "bg-[#1d6b52]" : "hover:bg-gray-50"
+                    }`}>
                     <span
-                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                      className={`text-4xl font-light shrink-0 transition-colors duration-300 ${isActive ? "text-[#c9a84c]" : "text-[#0a0a0a]/20"}`}>
+                      className={`text-xs font-black w-6 shrink-0 ${isOpen ? "text-[#c9a449]" : "text-gray-300"}`}>
                       {dept.id}
                     </span>
-
-                    {/* Icon + Title */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-1">
-                        <div
-                          className={`w-8 h-8 flex items-center justify-center transition-colors duration-300 ${isActive ? "text-[#c9a84c]" : "text-[#0a0a0a]/40 group-hover:text-[#c9a84c]"}`}>
-                          <Icon size={18} />
-                        </div>
-                        <h3
-                          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                          className={`text-2xl font-light transition-colors duration-300 ${isActive ? "text-[#f8f5ef]" : "text-[#0a0a0a]"}`}>
-                          {dept.title}
-                        </h3>
-                      </div>
-                      <p
-                        className={`text-xs tracking-[0.1em] transition-colors duration-300 ${isActive ? "text-[#c9a84c]/70" : "text-[#6b6b6b]"}`}>
-                        {dept.subtitle}
-                      </p>
+                    <div
+                      className={`w-8 h-8 flex items-center justify-center shrink-0 transition-colors duration-300 ${
+                        isOpen ? "bg-[#c9a449]/20" : "bg-[#1d6b52]/8"
+                      }`}>
+                      <Icon
+                        size={15}
+                        className={isOpen ? "text-[#c9a449]" : "text-[#1d6b52]"}
+                      />
                     </div>
+                    <div className="flex-1 min-w-0 text-start">
+                      <div
+                        className={`font-bold text-sm transition-colors duration-300 ${isOpen ? "text-white" : "text-[#111]"}`}>
+                        {dept.title}
+                      </div>
+                      <div
+                        className={`text-xs mt-0.5 transition-colors duration-300 ${isOpen ? "text-white/50" : "text-gray-400"}`}>
+                        {dept.sub}
+                      </div>
+                    </div>
+                    {isOpen ? (
+                      <Minus size={14} className="text-[#c9a449] shrink-0" />
+                    ) : (
+                      <Plus size={14} className="text-gray-300 shrink-0" />
+                    )}
+                  </button>
 
-                    {/* Chevron */}
-                    <ChevronDown
-                      size={16}
-                      className={`shrink-0 transition-all duration-300 ${isActive ? "rotate-180 text-[#c9a84c]" : "text-[#0a0a0a]/30"}`}
-                    />
-                  </div>
-                </button>
+                  {/* Mobile: inline expand */}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        className="overflow-hidden lg:hidden">
+                        <div className="px-5 py-4 border-t border-gray-100">
+                          <p className="text-[#555] text-xs leading-relaxed mb-3 italic">
+                            {dept.summary}
+                          </p>
+                          <ul className="space-y-2">
+                            {dept.services.map((s, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-2 text-xs text-[#333]">
+                                <span className="w-1 h-1 rounded-full bg-[#c9a449] mt-1.5 shrink-0" />
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
 
-                {/* Expanded content */}
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden">
-                      <div className="bg-white px-8 pb-8 pt-6 border-t border-[#0a0a0a]/5">
-                        <p className="text-[#6b6b6b] text-sm leading-relaxed mb-6 italic">
+          {/* Right: detail panel — desktop only */}
+          <div className="hidden lg:block lg:col-span-3">
+            <AnimatePresence mode="wait">
+              {active !== null && (
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
+                  transition={{ duration: 0.35 }}
+                  className="bg-white h-full p-8 border border-gray-100">
+                  {(() => {
+                    const dept = items[active];
+                    const Icon = dept.icon;
+                    return (
+                      <>
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-12 h-12 bg-[#1d6b52] flex items-center justify-center">
+                            <Icon size={22} className="text-[#c9a449]" />
+                          </div>
+                          <div>
+                            <h3 className="font-black text-xl text-[#111]">
+                              {dept.title}
+                            </h3>
+                            <p className="text-xs text-[#888]">{dept.sub}</p>
+                          </div>
+                        </div>
+
+                        <div className="w-10 h-0.5 bg-[#c9a449] mb-5" />
+
+                        <p className="text-[#555] text-sm leading-loose mb-8">
                           {dept.summary}
                         </p>
-                        <div className="w-8 h-px bg-[#c9a84c] mb-5" />
-                        <ul className="space-y-3">
-                          {dept.services.map((service, i) => (
-                            <motion.li
-                              key={i}
-                              initial={{
-                                opacity: 0,
-                                x: lang === "ar" ? 10 : -10,
-                              }}
+
+                        <h4 className="text-xs font-black text-[#111] tracking-widest uppercase mb-4">
+                          {isRtl ? "الخدمات" : "Services"}
+                        </h4>
+
+                        <div className="grid grid-cols-1 gap-2.5">
+                          {dept.services.map((s, j) => (
+                            <motion.div
+                              key={j}
+                              initial={{ opacity: 0, x: isRtl ? -10 : 10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.06 }}
-                              className="flex items-start gap-3 text-sm text-[#1a1a1a]">
-                              <span className="w-1 h-1 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
-                              {service}
-                            </motion.li>
+                              transition={{ delay: j * 0.06 }}
+                              className="flex items-center gap-3 py-2.5 px-3 bg-[#f8f6f2] border-r-2 border-[#1d6b52] group hover:bg-[#1d6b52]/5 transition-colors">
+                              <span className="text-[#c9a449] font-black text-xs w-5 shrink-0">
+                                {String(j + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-[#333] text-sm">{s}</span>
+                            </motion.div>
                           ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

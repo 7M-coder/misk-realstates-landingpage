@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 interface NavbarProps {
   lang: "ar" | "en";
@@ -8,97 +8,129 @@ interface NavbarProps {
 }
 
 export default function Navbar({ lang, content }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const h = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", h);
+    return () => window.removeEventListener("scroll", h);
   }, []);
 
-  const navLinks = [
-    { name: content.nav.home, href: "#home" },
-    { name: content.nav.about, href: "#about" },
-    { name: content.nav.services, href: "#services" },
-    { name: content.nav.contact, href: "#contact" },
+  const links = [
+    { label: content.nav.home, href: "#home" },
+    { label: content.nav.about, href: "#about" },
+    { label: content.nav.services, href: "#services" },
+    { label: lang === "ar" ? "أقسامنا" : "Departments", href: "#departments" },
+    { label: content.nav.contact, href: "#contact" },
   ];
 
+  const isRtl = lang === "ar";
+
   return (
-    <nav
-      dir={lang === "ar" ? "rtl" : "ltr"}
-      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-        scrolled
-          ? "bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 py-3"
-          : "bg-transparent py-6"
-      }`}>
-      <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-        {/* Logo */}
-        <a href="#" className="flex flex-col leading-none group">
-          <span
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            className="text-[#f8f5ef] text-2xl font-light tracking-[0.15em] uppercase group-hover:text-[#c9a84c] transition-colors duration-500">
-            Misk
-          </span>
-          <span className="text-[#c9a84c] text-[10px] tracking-[0.4em] uppercase font-light mt-[-2px]">
-            Estate Group
-          </span>
-        </a>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link, i) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="relative text-[#f8f5ef]/70 hover:text-[#c9a84c] text-sm tracking-[0.12em] uppercase font-light transition-colors duration-300 group">
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#c9a84c] group-hover:w-full transition-all duration-500" />
-            </a>
-          ))}
-
-          <a
-            href={lang === "ar" ? "/en" : "/"}
-            className="px-5 py-2 border border-[#c9a84c]/60 text-[#c9a84c] text-xs tracking-[0.2em] uppercase hover:bg-[#c9a84c] hover:text-[#0a0a0a] transition-all duration-300 font-medium">
-            {content.nav.lang}
+    <>
+      <nav
+        dir={isRtl ? "rtl" : "ltr"}
+        style={{ fontFamily: "'Tajawal',sans-serif", transition: "all 0.4s" }}
+        className={`fixed top-0 inset-x-0 z-50 ${
+          scrolled ? "bg-white shadow-sm" : "bg-transparent"
+        }`}>
+        <div className="max-w-7xl mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between gap-6">
+          {/* Logo */}
+          <a href="#" className="shrink-0 flex items-center gap-2">
+            <div
+              className={`font-black text-xl leading-none transition-colors duration-400 ${scrolled ? "text-[#1d6b52]" : "text-white"}`}
+              style={{ fontFamily: "'Tajawal',sans-serif" }}>
+              مسك
+            </div>
+            <div
+              className={`hidden md:flex flex-col leading-none transition-colors duration-400 ${scrolled ? "text-[#111]" : "text-white/70"}`}>
+              <span className="text-[10px] font-light tracking-wider">
+                للخدمات العقارية
+              </span>
+            </div>
           </a>
+
+          {/* Desktop Links — centered */}
+          <div className="hidden md:flex items-center gap-7">
+            {links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className={`text-sm font-medium relative group transition-colors duration-300 ${
+                  scrolled
+                    ? "text-[#333] hover:text-[#1d6b52]"
+                    : "text-white/80 hover:text-white"
+                }`}>
+                {l.label}
+                <span className="absolute -bottom-0.5 inset-x-0 h-0.5 bg-[#c9a449] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+              </a>
+            ))}
+          </div>
+
+          {/* Right: Lang + CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={isRtl ? "/en" : "/"}
+              className={`text-xs font-medium px-4 py-2 border transition-all duration-300 ${
+                scrolled
+                  ? "border-[#1d6b52]/40 text-[#1d6b52] hover:bg-[#1d6b52] hover:text-white"
+                  : "border-white/40 text-white hover:bg-white/10"
+              }`}>
+              {content.nav.lang}
+            </a>
+            <a
+              href="#contact"
+              className="text-xs font-bold px-5 py-2.5 bg-[#c9a449] text-white hover:bg-[#b8932f] transition-colors duration-300">
+              {isRtl ? "تواصل معنا" : "Contact Us"}
+            </a>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setOpen(!open)}
+            className={`md:hidden transition-colors ${scrolled ? "text-[#1d6b52]" : "text-white"}`}>
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-[#f8f5ef] hover:text-[#c9a84c] transition-colors"
-          onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {isOpen && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
-            <div className="flex flex-col items-center py-8 gap-6">
-              {navLinks.map((link) => (
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            dir={isRtl ? "rtl" : "ltr"}
+            style={{ fontFamily: "'Tajawal',sans-serif" }}
+            className="fixed top-16 inset-x-0 z-40 bg-white shadow-xl border-t border-gray-100">
+            <div className="flex flex-col divide-y divide-gray-50">
+              {links.map((l) => (
                 <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-[#f8f5ef]/70 hover:text-[#c9a84c] text-sm tracking-[0.15em] uppercase transition-colors"
-                  onClick={() => setIsOpen(false)}>
-                  {link.name}
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="px-6 py-4 text-sm font-medium text-[#333] hover:text-[#1d6b52] hover:bg-gray-50 transition-colors">
+                  {l.label}
                 </a>
               ))}
-              <a
-                href={lang === "ar" ? "/en" : "/"}
-                className="px-6 py-2 border border-[#c9a84c]/60 text-[#c9a84c] text-xs tracking-[0.2em] uppercase hover:bg-[#c9a84c] hover:text-[#0a0a0a] transition-all">
-                {content.nav.lang}
-              </a>
+              <div className="p-4 flex gap-3">
+                <a
+                  href={isRtl ? "/en" : "/"}
+                  className="flex-1 text-center py-2.5 border border-[#1d6b52] text-[#1d6b52] text-sm font-medium">
+                  {content.nav.lang}
+                </a>
+                <a
+                  href="#contact"
+                  className="flex-1 text-center py-2.5 bg-[#c9a449] text-white text-sm font-bold">
+                  {isRtl ? "تواصل" : "Contact"}
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

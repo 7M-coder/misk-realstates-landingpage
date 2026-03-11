@@ -1,31 +1,30 @@
 ---
 import "../styles/global.css";
-
 interface Props {
   title: string;
   lang?: "ar" | "en";
 }
-
 const { title, lang = "ar" } = Astro.props;
 const dir = lang === "ar" ? "rtl" : "ltr";
 ---
 
 <!doctype html>
-<html lang={lang} dir={dir} class="scroll-smooth">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <meta
-      name="description"
-      content="Misk Estate - Integrated Real Estate Solutions"
+    <meta name="description" content="مجموعة مسك للخدمات العقارية" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;900&display=swap"
+      rel="stylesheet"
     />
   </head>
   <body
-    class="bg-[#0a0a0a] text-[#f8f5ef]"
-    style="font-family: 'DM Sans', sans-serif;">
+    style="font-family:'Tajawal',sans-serif; margin:0; padding:0; background:#fff; color:#111;">
     <slot />
   </body>
 </html>
