@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar";
+import Hero from "../../components/Hero";
+import About from "../../components/About";
+import Features from "../../components/Features";
+import Services from "../../components/Services";
+import Contact from "../../components/Contact";
+import { content } from "../../data/content";
+
+const lang = "en";
+const t = content[lang];
+---
+
+<Layout title="Misk Real Estate Group | Home" lang={lang}>
+  <Navbar client:load lang={lang} content={t} />
+  <Hero client:load content={t} lang={lang} />
+  <About client:visible content={t} lang={lang} />
+  <Services client:visible content={t} lang={lang} />
+  <Features client:visible content={t} lang={lang} />
+  <Contact client:visible content={t} lang={lang} />
+</Layout>

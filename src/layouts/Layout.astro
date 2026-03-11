@@ -1,0 +1,31 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  lang?: "ar" | "en";
+}
+
+const { title, lang = "ar" } = Astro.props;
+const dir = lang === "ar" ? "rtl" : "ltr";
+---
+
+<!doctype html>
+<html lang={lang} dir={dir} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Misk Estate - Integrated Real Estate Solutions"
+    />
+  </head>
+  <body
+    class="bg-[#0a0a0a] text-[#f8f5ef]"
+    style="font-family: 'DM Sans', sans-serif;">
+    <slot />
+  </body>
+</html>
