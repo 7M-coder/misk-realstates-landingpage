@@ -15,19 +15,19 @@ export default function Features({ content, lang }: FeaturesProps) {
       id="features"
       dir={isRtl ? "rtl" : "ltr"}
       style={{ fontFamily: "'Tajawal',sans-serif" }}
-      className="bg-white py-20 md:py-28">
+      className="bg-[#111] py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-14">
           <h2
-            className="font-black text-[#111] leading-tight"
+            className="font-black text-white leading-tight"
             style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
             {content.advantages.title}
           </h2>
         </div>
 
         {/* Feature cards — 5 items across desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/5">
           {content.advantages.items.map((item: string, i: number) => {
             const Icon = icons[i] || Star;
             return (
@@ -37,14 +37,14 @@ export default function Features({ content, lang }: FeaturesProps) {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="group bg-white p-8 hover:bg-[#1d6b52] transition-all duration-500 cursor-default">
-                <div className="w-12 h-12 bg-[#1d6b52]/8 flex items-center justify-center mb-5 group-hover:bg-[#c9a449] transition-colors duration-500">
+                className="group bg-[#1a1a1a] p-8 hover:bg-[#1d6b52] transition-all duration-500 cursor-default">
+                <div className="w-12 h-12 bg-white/6 flex items-center justify-center mb-5 group-hover:bg-[#c9a449] transition-colors duration-500">
                   <Icon
                     size={20}
-                    className="text-[#1d6b52] group-hover:text-white transition-colors duration-500"
+                    className="text-[#c9a449] group-hover:text-white transition-colors duration-500"
                   />
                 </div>
-                <p className="text-[#333] font-semibold text-sm leading-relaxed group-hover:text-white transition-colors duration-500">
+                <p className="text-white/70 font-semibold text-sm leading-relaxed group-hover:text-white transition-colors duration-500">
                   {item}
                 </p>
               </motion.div>

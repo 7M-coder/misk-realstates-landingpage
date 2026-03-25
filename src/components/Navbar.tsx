@@ -41,7 +41,7 @@ export default function Navbar({ lang, content }: NavbarProps) {
             <img
               src="/logo.png"
               alt="مسك للخدمات العقارية"
-              className={`h-10 w-auto transition-all duration-400 ${scrolled ? "" : "brightness-0 invert"}`}
+              className="h-30 w-auto"
             />
           </a>
 

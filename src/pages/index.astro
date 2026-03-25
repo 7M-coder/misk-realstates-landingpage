@@ -7,7 +7,6 @@ import Features from "../components/Features";
 import Services from "../components/Services";
 import Contact from "../components/Contact";
 import { content } from "../data/content";
-import Departments from "../components/Departments";
 
 const lang = "ar";
 const t = content[lang];
@@ -18,7 +17,6 @@ const t = content[lang];
   <Hero client:load content={t} lang={lang} />
   <About client:visible content={t} lang={lang} />
   <Services client:visible content={t} lang={lang} />
-  <Departments client:visible lang={lang} />
   <Features client:visible content={t} lang={lang} />
   <Contact client:visible content={t} lang={lang} />
 </Layout>
