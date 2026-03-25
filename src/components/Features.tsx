@@ -17,30 +17,17 @@ export default function Features({ content, lang }: FeaturesProps) {
       style={{ fontFamily: "'Tajawal',sans-serif" }}
       className="bg-white py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header + subtitle in a row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-14">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-0.5 bg-[#c9a449]" />
-              <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
-                {isRtl ? "لماذا تختارنا" : "Why Choose Us"}
-              </span>
-            </div>
-            <h2
-              className="font-black text-[#111] leading-tight"
-              style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
-              {content.advantages.title}
-            </h2>
-          </div>
-          <p className="text-[#666] text-sm leading-loose font-light md:text-end">
-            {isRtl
-              ? "نقدم خدمات عقارية متكاملة بمعايير احترافية عالية تضمن لكم أفضل النتائج"
-              : "We deliver integrated real estate services with high professional standards to ensure you get the best results"}
-          </p>
+        {/* Header */}
+        <div className="mb-14">
+          <h2
+            className="font-black text-[#111] leading-tight"
+            style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
+            {content.advantages.title}
+          </h2>
         </div>
 
-        {/* Feature cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
+        {/* Feature cards — 5 items across desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-gray-100">
           {content.advantages.items.map((item: string, i: number) => {
             const Icon = icons[i] || Star;
             return (

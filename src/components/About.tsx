@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Eye, Target, CheckCircle } from "lucide-react";
+import { Eye, Target } from "lucide-react";
 
 interface AboutProps {
   content: any;
@@ -36,13 +36,6 @@ export default function About({ content, lang }: AboutProps) {
             <div className="absolute -top-4 -right-4 w-16 h-16 border-t-4 border-r-4 border-[#c9a449]" />
             <div className="absolute -bottom-4 -left-4 w-16 h-16 border-b-4 border-l-4 border-[#1d6b52]" />
 
-            {/* Floating experience badge */}
-            <div className="absolute bottom-6 right-6 bg-[#1d6b52] text-white px-6 py-5 text-center shadow-xl">
-              <div className="text-3xl font-black text-[#c9a449]">٥+</div>
-              <div className="text-xs font-light mt-1 leading-tight text-white/80">
-                {isRtl ? "سنوات\nخبرة" : "Years\nExperience"}
-              </div>
-            </div>
           </motion.div>
 
           {/* Text column */}
@@ -51,13 +44,6 @@ export default function About({ content, lang }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-8 h-0.5 bg-[#c9a449]" />
-              <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
-                {isRtl ? "من نحن" : "About Us"}
-              </span>
-            </div>
-
             <h2
               className="font-black text-[#111] leading-tight mb-5"
               style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
@@ -68,42 +54,6 @@ export default function About({ content, lang }: AboutProps) {
               {content.about.description}
             </p>
 
-            {/* Bullet highlights */}
-            <div className="space-y-3 mb-8">
-              {(isRtl
-                ? [
-                    "التزام كامل بالأنظمة العقارية السعودية",
-                    "فريق متخصص بخبرة ميدانية",
-                    "حلول متكاملة من التسويق حتى التوثيق",
-                  ]
-                : [
-                    "Full compliance with Saudi real estate regulations",
-                    "Specialized team with field expertise",
-                    "End-to-end solutions from marketing to documentation",
-                  ]
-              ).map((point, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle size={16} className="text-[#1d6b52] shrink-0" />
-                  <span className="text-[#333] text-sm font-medium">
-                    {point}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Audience tags */}
-            <div className="flex flex-wrap gap-2">
-              {(isRtl
-                ? ["الأفراد", "المستثمرون", "ملاك العقارات", "الجهات التجارية"]
-                : ["Individuals", "Investors", "Property Owners", "Businesses"]
-              ).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1.5 bg-[#f8f6f2] text-[#1d6b52] text-xs font-semibold border border-[#1d6b52]/15 hover:bg-[#1d6b52] hover:text-white transition-colors duration-300 cursor-default">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

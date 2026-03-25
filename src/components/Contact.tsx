@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send, Instagram, Twitter } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 
 interface ContactProps {
   content: any;
@@ -19,12 +19,6 @@ export default function Contact({ content, lang }: ContactProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28">
         {/* Section header */}
         <div className="mb-14">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-0.5 bg-[#c9a449]" />
-            <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
-              {isRtl ? "تواصل معنا" : "Get In Touch"}
-            </span>
-          </div>
           <h2
             className="font-black text-[#111] leading-tight"
             style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
@@ -38,7 +32,7 @@ export default function Contact({ content, lang }: ContactProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 bg-[#1d6b52] p-8 md:p-10 flex flex-col justify-between">
+            className="lg:col-span-2 bg-[#1d6b52] p-8 md:p-10 flex flex-col">
             <div>
               <h3 className="text-white font-bold text-xl mb-2">
                 {isRtl ? "معلومات التواصل" : "Contact Information"}
@@ -87,29 +81,6 @@ export default function Contact({ content, lang }: ContactProps) {
               </div>
             </div>
 
-            {/* Social + handle */}
-            <div className="mt-10 pt-8 border-t border-white/15">
-              <p className="text-white/40 text-xs uppercase tracking-wider mb-3">
-                {isRtl ? "تابعنا على" : "Follow Us"}
-              </p>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://instagram.com/miskestate"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 bg-white/10 hover:bg-[#c9a449] flex items-center justify-center transition-colors duration-300">
-                  <Instagram size={15} className="text-white" />
-                </a>
-                <a
-                  href="https://twitter.com/miskestate"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-9 h-9 bg-white/10 hover:bg-[#c9a449] flex items-center justify-center transition-colors duration-300">
-                  <Twitter size={15} className="text-white" />
-                </a>
-                <span className="text-white/50 text-sm mr-1">@miskestate</span>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right: form */}

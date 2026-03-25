@@ -225,12 +225,6 @@ export default function Departments({ lang }: DepartmentsProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-14">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-0.5 bg-[#c9a449]" />
-            <span className="text-[#c9a449] text-xs font-bold tracking-widest uppercase">
-              {isRtl ? "أقسامنا" : "Our Divisions"}
-            </span>
-          </div>
           <h2
             className="font-black text-[#111] leading-tight"
             style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>

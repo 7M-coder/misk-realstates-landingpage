@@ -29,35 +29,8 @@ export default function Hero({ content, lang }: HeroProps) {
       {/* Gradient: strong bottom, subtle top */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
 
-      {/* Top-right: small badge */}
-      <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="absolute top-24 right-8 md:right-14 flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2"
-        style={{ direction: "ltr" }}>
-        <div className="w-2 h-2 rounded-full bg-[#c9a449] animate-pulse" />
-        <span className="text-white text-xs font-medium tracking-wide">
-          {isRtl ? "معتمد هيئة العقار" : "Real Estate Authority Licensed"}
-        </span>
-      </motion.div>
-
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 pb-0">
-        {/* Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex items-center gap-3 mb-4">
-          <span className="w-6 h-0.5 bg-[#c9a449]" />
-          <span className="text-[#c9a449] text-xs font-medium tracking-widest uppercase">
-            {isRtl
-              ? "مجموعة مسك للخدمات العقارية"
-              : "Misk Real Estate Services Group"}
-          </span>
-        </motion.div>
-
         {/* Big headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}

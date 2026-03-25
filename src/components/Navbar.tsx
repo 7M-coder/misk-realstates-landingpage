@@ -37,18 +37,12 @@ export default function Navbar({ lang, content }: NavbarProps) {
         }`}>
         <div className="max-w-7xl mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#" className="shrink-0 flex items-center gap-2">
-            <div
-              className={`font-black text-xl leading-none transition-colors duration-400 ${scrolled ? "text-[#1d6b52]" : "text-white"}`}
-              style={{ fontFamily: "'Tajawal',sans-serif" }}>
-              مسك
-            </div>
-            <div
-              className={`hidden md:flex flex-col leading-none transition-colors duration-400 ${scrolled ? "text-[#111]" : "text-white/70"}`}>
-              <span className="text-[10px] font-light tracking-wider">
-                للخدمات العقارية
-              </span>
-            </div>
+          <a href="#" className="shrink-0 flex items-center">
+            <img
+              src="/logo.png"
+              alt="مسك للخدمات العقارية"
+              className={`h-10 w-auto transition-all duration-400 ${scrolled ? "" : "brightness-0 invert"}`}
+            />
           </a>
 
           {/* Desktop Links — centered */}
